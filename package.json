@@ -1,0 +1,14 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "abhay maurya",
+  "license": "ISC",
+  "devDependencies": {
+    "stylelint": "^9.5.0"
+  }
+}
