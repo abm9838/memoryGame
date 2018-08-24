@@ -1,0 +1,24 @@
+
+#ignore images
+*.jpg
+*.jpeg
+*.png
+*.gif
+
+#ignore videos
+*.mp4
+*.3gp
+*.avi
+*.mpeg
+
+#ignore docs
+*.pdf
+*.docs
+*.doc
+*.docx
+
+
+#ignore executables and programs
+*.exe
+*.msi
+
