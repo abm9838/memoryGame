@@ -16,19 +16,23 @@ $( document ).ready(function() {
   console.log("trackGame : "+trackGame);
 
 
-  if(isgameEnd == false && isgridPrint){
+  if(isgridPrint){
 
     $('td').on('click', function(){
       clickedTd = $(this).attr('class'); // class of td
 
-      animateOpen(clickedTd);
-      trackGame.push(clickedTd);
-      console.log("tracking : "+trackGame);
-      if(preClick == 0){
-        preClick = currentClick;
+      if(!isgameEnd && clickedTd!=trackGame[trackGame.length-1] ){
+
+        animateOpen(clickedTd);
+        trackGame.push(clickedTd);
+        console.log("tracking : "+trackGame);
+        if(preClick == 0){
+          preClick = currentClick;
+        }
+        currentClick = clickedTd.substr(2)-'0';
+        calClick(clickedTd);
+
       }
-      currentClick = clickedTd.substr(2)-'0';
-      calClick(clickedTd);
 
 
     });
@@ -37,7 +41,7 @@ $( document ).ready(function() {
     $('#reset').click(function(){
       setUpInital();
     });
-
+      /*-----------------timer  ---------*/
     var x = setInterval(function() {
       now = new Date().getTime();
       distance = now - countDownDate ;
@@ -59,17 +63,23 @@ $( document ).ready(function() {
 /* ------------------------VISIBLITY HIDE OPEN ------------------- */
 
 function closePair(){
+
+
+
   clickedTd = trackGame.pop();
   animateClose();
   clickedTd = trackGame.pop();
   animateClose();
+  console.log(trackGame);
 }
 function animateOpen(){
   $('.'+clickedTd+ ' img').css('visibility','');
+  $('.'+clickedTd).toggleClass('td_zoom');
 
 }
 function animateClose(){
   $('.'+clickedTd+ ' img').css('visibility','hidden');
+  $('.'+clickedTd).toggleClass('td_zoom');
 }
 function hideImg(){
   for(var i=1;i<17;i++){
@@ -83,7 +93,8 @@ function hideImg(){
 function calClick(clickedTd){
 
   //console.log("clicked : "+currentClick);
-  moveCount+=1;
+  if(isgameEnd==false)
+    moveCount+=1;
   displayMoves(moveCount);//update move count
 
   if(preClick!=0){
@@ -94,17 +105,18 @@ function calClick(clickedTd){
       preClick = 0;
     }
     else if(arrClass[currentClick-1] == arrClass[preClick-1]){
-      console.log("matched--");
+     // console.log("matched--");
       /*__________________________WINING CASE _____*/
       if(trackGame.length>=16){
         rate = parseFloat(rate).toFixed(2);
         isgameEnd=true;
+        clearTimeout(x);
         alert("you won the game in "+minutes+":"+seconds+" and rating : "+rate);
       }
       currentClick = 0;
       preClick = 0;}
     else{
-      console.log("opps--");
+      //console.log("opps--");
       setTimeout(closePair,500);
       currentClick = 0;
       preClick = 0;
@@ -122,8 +134,15 @@ function setUpInital(){
   minutes =0;
   seconds=0;
   countDownDate = new Date().getTime();
+  preClick=0;
+  currentClick=0;
+  arrClass = new Array(16);
+  trackGame = new Array(0);
   rateGame();
   document.getElementById("timer").innerHTML ="0:00";
+  for(var i=1;i<=16;i++){
+    $('.td'+i).removeClass('td_zoom');
+  }
   displayMoves(0);
   setupTheme();
   fillTable();
@@ -181,7 +200,7 @@ function fillTable(x){
   console.log("here is x");
   console.log(x);
   for(var i=1;i<17;i++){
-    $('.td'+i).html("<img class=\"img"+x[i-1]+"\"src=\"img/im"+x[i-1]+".png\" >");
+    $('.td'+i).html("<img id=\"\" class=\"img"+x[i-1]+"\"src=\"img/im"+x[i-1]+".png\" >");
   }
 
   arrClass = x;
@@ -220,6 +239,4 @@ function fillTable(x){
 
 
 });
-
-
 
