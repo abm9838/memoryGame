@@ -1,17 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>  </title>
+    <title>memory Game</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/mStyle.css"/>
-    <script type="text/javascript" src="js/mControl.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </head>
 
   <body>
-      <div >
-      </div>
+      <div class="main">
+          <div class="container">
+            <div class="head">
+              <span>Memory Game</span>
+            </div>
+            <!-- statics-->
+            <div class="statics">
+              <div class="rating1">
+                <div class="rate">
+                  <div class="stars-outer">
+                    <div class="stars-inner"></div>
+                  </div>
 
+                </div>
+                <div class="moves">
+                    <span class="move-val">30</span>Moves
+                </div>
+
+              </div>
+
+              <div class="reset">
+                  <img src="img/reset.png">
+                </div>
+              <div id="demo"></div>
+
+
+            </div>
+
+            <!-- grid -->
+            <div class="grid">
+              <table class="tb">
+                <!-- row 1 -->
+                <tr class="r1 r">
+                  <td class="td1"><img src="img/im7.png" ></td>
+                  <td class="td1"><img src="img/im2.png" ></td>
+                  <td class="td1"><img src="img/im4.png" ></td>
+                  <td class="td1"><img src="img/im1.png" ></td>
+                </tr>
+
+                <tr class="r2 r">
+                  <td class="td1"><img src="img/im3.png" ></td>
+                  <td class="td1"><img src="img/im5.png" ></td>
+                  <td class="td1"><img src="img/im6.png" ></td>
+                  <td class="td1"><img src="img/im8.png" ></td>
+                </tr>
+
+                <tr class="r3 r">
+                  <td class="td1"><img src="img/im1.png" ></td>
+                  <td class="td1"><img src="img/im2.png" ></td>
+                  <td class="td1"><img src="img/im3.png" ></td>
+                  <td class="td1"><img src="img/im4.png" ></td>
+                </tr>
+
+                <tr class="r4 r">
+                  <td class="td1"><img src="img/im5.png" ></td>
+                  <td class="td1"><img src="img/im6.png" ></td>
+                  <td class="td1"><img src="img/im7.png" ></td>
+                  <td class="td1"><img src="img/im8.png" ></td>
+                </tr>
+
+              </table>
+            </div>
+
+          </div>
+      </div>
   </body>
 </html>

@@ -1,1 +1,143 @@
 /* index.css*/
+@font-face {
+  font-family: FontAwesome;
+  src: url(FontAwesome.otf);
+}
+div{
+  border:1px solid red;
+}
+
+body,
+.main{
+  height: 100%;
+  width:100%;
+  background:#2c578a;
+  overflow: hidden;
+}
+
+.container{
+  width: auto;
+  max-width: 400px;
+  height:100%;
+  background: #e6c454;
+  display:table;
+  margin:0 auto;
+
+
+}
+.head{
+  width:100%;
+  height:auto;
+  font-size: 2em;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.head>span{
+  color: #197552;
+  font-weight:600;
+  font-size: 1.8em;
+}
+
+.statics{
+  background: #e5e9d6;
+  width:100%;
+  height:auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.statics :first-child,
+.statics :last-child{
+  width:auto;
+  margin-left:30px;
+}
+
+.rating1{
+  display: flex;
+}
+.reset{
+  height:auto;
+  width:auto;
+}
+.reset>img{
+  height:20px;
+  width:20px;
+
+}
+/******   Big Screen **********/
+@media screen and (min-width:600px){
+  .statics{
+    display:flex;
+
+  }
+  .statics :first-child,
+  .statics :last-child
+  {
+    width:50%;
+    margin-left:10px;
+  }
+}
+
+/*----------------------------*/
+
+/*-----------  stars -----------*/
+
+
+
+.stars-outer {
+display: inline-block;
+position: relative;
+font-family: FontAwesome;
+}
+
+.stars-outer::before {
+content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+.stars-inner {
+position: absolute;
+top: 0;
+left: 0;
+white-space: nowrap;
+overflow: hidden;
+width: 0;
+}
+
+.stars-inner::before {
+content: "\f005 \f005 \f005 \f005 \f005";
+color: #f8ce0b;
+}
+
+/*---------------------------*/
+
+.grid{
+  height:300px;
+  width:300px;
+  display: table;
+  margin: 0 auto;
+}
+
+table{
+
+  border-collapse: collapse;
+  width:100%;
+  height:100%;
+}
+
+table,
+th,
+td{
+  border:1px solid black;
+
+}
+
+td{
+  width:25%;
+  height:25%;
+}
+
+img{
+  height:auto;
+  width:auto;
+  max-width:60%;
+  max-height:25%;
+  margin:20%;
+}
