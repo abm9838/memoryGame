@@ -4,14 +4,13 @@
   src: url(FontAwesome.otf);
 }
 div{
-  border:1px solid red;
+  border:0px solid red;
 }
 
 body,
 .main{
   height: 100%;
   width:100%;
-  background:#2c578a;
   overflow: hidden;
 }
 
@@ -19,7 +18,7 @@ body,
   width: auto;
   max-width: 400px;
   height:100%;
-  background: #e6c454;
+  background: none;
   display:table;
   margin:0 auto;
 
@@ -38,21 +37,16 @@ body,
   font-size: 1.8em;
 }
 
+/*   statics portion */
+
 .statics{
   background: #e5e9d6;
   width:100%;
   height:auto;
   font-family: Arial, Helvetica, sans-serif;
 }
-.statics :first-child,
-.statics :last-child{
-  width:auto;
-  margin-left:30px;
-}
 
-.rating1{
-  display: flex;
-}
+
 .reset{
   height:auto;
   width:auto;
@@ -62,21 +56,40 @@ body,
   width:20px;
 
 }
+
+.stat-part1,
+.stat-part2{
+  display:flex;
+  height:25px;
+}
 /******   Big Screen **********/
 @media screen and (min-width:600px){
+
+.statics :first-child,
+.statics :last-child{
+  width:auto;
+  margin-left:30px;
+}
   .statics{
     display:flex;
-
+    height:25px;
+    margin: 20px 0 20px 0;
   }
   .statics :first-child,
   .statics :last-child
   {
     width:50%;
-    margin-left:10px;
+    margin-left:0px;
+    display : table-cell;
   }
 }
 
+
 /*----------------------------*/
+
+/**      STATICS ENDS HERE */
+
+
 
 /*-----------  stars -----------*/
 
@@ -120,6 +133,7 @@ table{
   border-collapse: collapse;
   width:100%;
   height:100%;
+  background: none;
 }
 
 table,
@@ -128,6 +142,7 @@ td{
   border:1px solid black;
 
 }
+
 
 td{
   width:25%;
@@ -139,5 +154,5 @@ img{
   width:auto;
   max-width:60%;
   max-height:25%;
-  margin:20%;
+
 }

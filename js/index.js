@@ -1,14 +1,15 @@
 $( document ).ready(function() {
 
 
-var rate = 4.5;
+var rate = 2.4;
 var starTotal = 5.0;
 const starPercentage = (rate / starTotal) * 100;
 const starPercentageRounded = Math.round(starPercentage / 10) * 10+"%";
 console.log(starPercentageRounded);
-document.querySelector('.stars-inner').style.width = starPercentageRounded;
+$('.stars-inner').css("width",starPercentageRounded);
+//document.querySelector('.stars-inner').style.width = starPercentageRounded;
 
-
+$('.moves').html("300 moves")
 
 var countDownDate = new Date().getTime();
 
