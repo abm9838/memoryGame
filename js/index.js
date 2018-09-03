@@ -1,57 +1,164 @@
 $( document ).ready(function() {
-  var rate = 2.4;
+  var rate = 5.0;
   var moveCount=0;
   var countDownDate = new Date().getTime();
-
-
+  var minutes =0;
+  var seconds=0;
   var isgameEnd=false;
   var isgridPrint = false;
+  var preClick=0;
+  var currentClick=0;
+  var arrClass = new Array(16);
+  var trackGame = new Array(0);
 
-
+  var clickedTd;
   setUpInital();
+  console.log("trackGame : "+trackGame);
+
+
+  if(isgameEnd == false && isgridPrint){
+
+    $('td').on('click', function(){
+      clickedTd = $(this).attr('class'); // class of td
+
+      animateOpen(clickedTd);
+      trackGame.push(clickedTd);
+      console.log("tracking : "+trackGame);
+      if(preClick == 0){
+        preClick = currentClick;
+      }
+      currentClick = clickedTd.substr(2)-'0';
+      calClick(clickedTd);
+
+
+    });
+
+
+    $('#reset').click(function(){
+      setUpInital();
+    });
+
+    var x = setInterval(function() {
+      now = new Date().getTime();
+      distance = now - countDownDate ;
+      //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      seconds = ("0" + seconds).slice(-2);
+      document.getElementById("timer").innerHTML = minutes + ":" +seconds;
+      rateGame()
+  }, 1000);
 
 
 
-var x = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = now - countDownDate ;
-    //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("timer").innerHTML = minutes + ":" +seconds;
-}, 1000);
+
+}
 
 
+/* ------------------------VISIBLITY HIDE OPEN ------------------- */
+
+function closePair(){
+  clickedTd = trackGame.pop();
+  animateClose();
+  clickedTd = trackGame.pop();
+  animateClose();
+}
+function animateOpen(){
+  $('.'+clickedTd+ ' img').css('visibility','');
+
+}
+function animateClose(){
+  $('.'+clickedTd+ ' img').css('visibility','hidden');
+}
+function hideImg(){
+  for(var i=1;i<17;i++){
+    $('.td'+i+ ' img').css('visibility','hidden');
+  }
+  countDownDate = new Date().getTime();
+}
 
 
+/*--------------------------- CLICK CALCULATIONS MATCHED OR NOT-------------*/
+function calClick(clickedTd){
+
+  //console.log("clicked : "+currentClick);
+  moveCount+=1;
+  displayMoves(moveCount);//update move count
+
+  if(preClick!=0){
+    if(currentClick==preClick){
+      console.log("opps--");
+      setTimeout(closePair, 500);
+      currentClick = 0;
+      preClick = 0;
+    }
+    else if(arrClass[currentClick-1] == arrClass[preClick-1]){
+      console.log("matched--");
+      /*__________________________WINING CASE _____*/
+      if(trackGame.length>=16){
+        rate = parseFloat(rate).toFixed(2);
+        isgameEnd=true;
+        alert("you won the game in "+minutes+":"+seconds+" and rating : "+rate);
+      }
+      currentClick = 0;
+      preClick = 0;}
+    else{
+      console.log("opps--");
+      setTimeout(closePair,500);
+      currentClick = 0;
+      preClick = 0;
+
+
+    }
+  }
+}
+
+
+/*----------------------------------INITIAL SETUP----------------------- */
 function setUpInital(){
-
-  rateGame(5.0);
+  moveCount=0;
+  rate=5;
+  minutes =0;
+  seconds=0;
+  countDownDate = new Date().getTime();
+  rateGame();
   document.getElementById("timer").innerHTML ="0:00";
   displayMoves(0);
   setupTheme();
-
   fillTable();
+  setTimeout(hideImg, 2000);
   isgameEnd = false;
   isgridPrint = true;
 }
 
-function rateGame(rate){
+/*----------------------------------GAME RATING--------------------  */
+function rateGame(){
   var starTotal = 5.0;
+  var rateTime=0;
+  var effMoveCount=0;
+  //  decrease rating after 15sec and 25moves
+  if(seconds>15 && minutes<1){
+    rateTime =parseFloat((minutes+ seconds/60*2.2)/1.7).toFixed(3);
+  }
+  if(moveCount>25){
+    effMoveCount = moveCount-25;
+  }
+  var rateMove =(effMoveCount*0.10).toFixed(3);
+  rate =5 - rateTime - rateMove;
+  rate = rate.toFixed(3);
+  //console.log("rate:"+rate);
   const starPercentage = (rate / starTotal) * 100;
   const starPercentageRounded = Math.round(starPercentage / 10) * 10+"%";
-  console.log(starPercentageRounded);
-  //$('.stars-inner').css("width",starPercentageRounded);
   document.querySelector('.stars-inner').style.width = starPercentageRounded;
 
-  }
-
+}
 function displayMoves(moveCount){
     $('.moves').html(moveCount+" moves");
 
 }
 
+/* ----------------------------------FILL TABLE WITH RANDOM IMAGES--------------   */
 function fillTable(x){
   var count=0;
   var x=new Array(0);
@@ -69,7 +176,7 @@ function fillTable(x){
         x.push(randnum);
         count+=1;
       }
-      console.log(randnum);
+
   }
   console.log("here is x");
   console.log(x);
@@ -77,9 +184,9 @@ function fillTable(x){
     $('.td'+i).html("<img class=\"img"+x[i-1]+"\"src=\"img/im"+x[i-1]+".png\" >");
   }
 
-
+  arrClass = x;
   }
-
+/*  ------------------------------ RASPONSIVE DESIGN-------------------------- */
   function setupTheme(){
 
     var deviceWidth =window.innerWidth;
@@ -110,9 +217,6 @@ function fillTable(x){
 
 
   }
-
-
-
 
 
 });

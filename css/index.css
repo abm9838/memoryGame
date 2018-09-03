@@ -97,6 +97,7 @@ body,
     height:auto;
     width:auto;
     max-width:80%;
+
   }
 
 
@@ -212,14 +213,14 @@ color: #f8ce0b;
 
 table{
   border-radius: 12px;
-  width: 96%;
-  height: 96%;
-  margin: 2%;
+  width: 94%;
+  height: 92%;
+  margin: 3%;
   background: #168aa7;
   padding: 0px;
   border-spacing: 13px;
   border-right: 2px red;
-  box-shadow:  0 0 12px 8px rgba(0,0,0,0.6);
+  box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
 }
 
 td{
@@ -229,5 +230,6 @@ td{
   background-color: #3cd3ba;
   margin: 8px;
   border-radius: 5px;
+
 }
 
