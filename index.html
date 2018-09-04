@@ -10,74 +10,91 @@
   </head>
 
   <body>
-
-
-      <div class="main">
-          <div class="container">
-            <div class="head" >
-              <span>Memory Game</span>
-            </div>
-            <!-- statics-->
-            <div class="statics">
-
-              <div class="stat-part1">
-                <div class="rate">
-                  <div class="stars-outer">
-                    <div class="stars-inner"></div>
-                  </div>
+    <div class="main">
+      <div class="container">
+        <div class="head" >
+          <span>Memory Game</span>
+        </div>
+        <!-- statics-->
+        <div class="statics">
+          <div class="stat-part1">
+            <div class="rate">
+              <div class="stars-outer">
+                <div class="stars-inner">
                 </div>
-                <div class="moves">
-                </div>
-
               </div>
-              <div class="stat-part2">
-                  <div class="reset">
-                      <img id="reset" src="img/reset.png">
-                    </div>
-                  <div id="timer"></div>
-
-              </div>
-
             </div>
-
-            <!-- grid -->
-
-            <div class="grid">
-              <table class="tb">
-
-                <!-- row 1 -->
-                <tr class="r1 r">
-                  <td class="td1"></td>
-                  <td class="td2"></td>
-                  <td class="td3"></td>
-                  <td class="td4"></td>
-                </tr>
-
-                <tr class="r2 r">
-                  <td class="td5"></td>
-                  <td class="td6"></td>
-                  <td class="td7"></td>
-                  <td class="td8"></td>
-                </tr>
-
-                <tr class="r3 r">
-                  <td class="td9"></td>
-                  <td class="td10"></td>
-                  <td class="td11"></td>
-                  <td class="td12"></td>
-                </tr>
-
-                <tr class="r4 r">
-                  <td class="td13"></td>
-                  <td class="td14"></td>
-                  <td class="td15"></td>
-                  <td class="td16"></td>
-                </tr>
-
-              </table>
+            <div class="moves">
             </div>
 
           </div>
+          <div class="stat-part2">
+            <div class="reset">
+                <img id="reset" src="img/reset.png">
+            </div>
+            <div id="timer">
+
+            </div>
+          </div>
+
+        </div>
+
+          <!-- grid -->
+
+          <div class="grid">
+            <table class="tb">
+
+              <!-- row 1 -->
+              <tr class="r1 r">
+                <td class="td1" id="td1"></td>
+                <td class="td2" id="td1"></td>
+                <td class="td3" id="td1"></td>
+                <td class="td4" id="td1"></td>
+              </tr>
+
+              <tr class="r2 r">
+                <td class="td5" id="td5"></td>
+                <td class="td6" id="td5"></td>
+                <td class="td7" id="td5"></td>
+                <td class="td8" id="td5"></td>
+              </tr>
+
+              <tr class="r3 r">
+                <td class="td9" id="td9" ></td>
+                <td class="td10" id="td9"></td>
+                <td class="td11" id="td9"></td>
+                <td class="td12" id="td9"></td>
+              </tr>
+
+              <tr class="r4 r">
+                <td class="td13" id="td13"></td>
+                <td class="td14" id="td13"></td>
+                <td class="td15" id="td13"></td>
+                <td class="td16" id="td13"></td>
+              </tr>
+
+            </table>
+          </div>
+
+        </div>
+    </div>
+    <div class="popup">
+      <div class="ok">
+        You won
       </div>
+      <div class="rateOut">
+        <div class="stars-outer">
+          <div class="rateLen stars-inner">
+          </div>
+      </div>
+      </div>
+      <div class="reset">
+         <button>
+            <img id="reset" src="img/reset.png">
+         </button>
+      </div>
+
+    </div>
+
   </body>
 </html>

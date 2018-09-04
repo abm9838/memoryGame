@@ -10,13 +10,13 @@ $( document ).ready(function() {
   var currentClick=0;
   var arrClass = new Array(16);
   var trackGame = new Array(0);
-
   var clickedTd;
   setUpInital();
   console.log("trackGame : "+trackGame);
 
 
   if(isgridPrint){
+    popUp();
 
     $('td').on('click', function(){
       clickedTd = $(this).attr('class'); // class of td
@@ -38,9 +38,15 @@ $( document ).ready(function() {
     });
 
 
-    $('#reset').click(function(){
+    $('#reset, .reset').click(function(){
       setUpInital();
     });
+    $('.resetpop').click(function(){
+      $('.popup').css('display','none');
+      setUpInital();
+
+    });
+
       /*-----------------timer  ---------*/
     var x = setInterval(function() {
       now = new Date().getTime();
@@ -59,18 +65,42 @@ $( document ).ready(function() {
 
 }
 
+/*---------------------DISPLAY POP UP --------------- */
+function popUp(){
+  $('.popup').css('display','block');
+  var starTotal = 5.0;
+  var i=0;
+  //animation to show final rating
+  var z = setInterval(function(){
+    if(i<=rate*10){
+      i++;
+      const starPercentage = ((i/10) / starTotal) * 100;
+      const starPercentageRounded = Math.round(starPercentage / 10) * 10+"%";
+      document.querySelector('.rateLen').style.width = starPercentageRounded;
+    }
+    if(i>=rate*10){
+      clearInterval(z);
+    }
+  },100);
 
+
+
+}
 /* ------------------------VISIBLITY HIDE OPEN ------------------- */
 
 function closePair(){
-
-
-
+  var shakeId1=trackGame[trackGame.length-1];
+  var shakeId2=trackGame[trackGame.length-2];
+  $('.'+shakeId1).attr("id","td_shake");
+  $('.'+shakeId2).attr("id","td_shake");
   clickedTd = trackGame.pop();
   animateClose();
   clickedTd = trackGame.pop();
   animateClose();
-  console.log(trackGame);
+  setTimeout(function () {
+    $('.'+shakeId1).attr("id","");
+    $('.'+shakeId2).attr("id","");}, 300);
+
 }
 function animateOpen(){
   $('.'+clickedTd+ ' img').css('visibility','');
@@ -111,7 +141,8 @@ function calClick(clickedTd){
         rate = parseFloat(rate).toFixed(2);
         isgameEnd=true;
         clearTimeout(x);
-        alert("you won the game in "+minutes+":"+seconds+" and rating : "+rate);
+        popUp();
+       // alert("you won the game in "+minutes+":"+seconds+" and rating : "+rate);
       }
       currentClick = 0;
       preClick = 0;}
@@ -200,7 +231,7 @@ function fillTable(x){
   console.log("here is x");
   console.log(x);
   for(var i=1;i<17;i++){
-    $('.td'+i).html("<img id=\"\" class=\"img"+x[i-1]+"\"src=\"img/im"+x[i-1]+".png\" >");
+    $('.td'+i).html("<img  class=\"img"+x[i-1]+"\"src=\"img/im"+x[i-1]+".png\" >");
   }
 
   arrClass = x;
@@ -234,9 +265,9 @@ function fillTable(x){
     var resetHeight =parseInt( $('#reset').css('height'));
     $('#reset').css('width',resetHeight+5);
 
+    $('.popup').css('top',(deviceheight-parseInt($('popup').css('height')))/2);
+    $('.popup').css('left',(deviceWidth-parseInt($('popup').css('widtht')))/2);
 
   }
-
-
 });
 

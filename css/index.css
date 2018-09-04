@@ -221,6 +221,8 @@ table{
   border-spacing: 13px;
   border-right: 2px red;
   box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
+  background: linear-gradient(to right,#1c8cc0 0%,#282b09c0 100%);
+
 }
 
 td{
@@ -233,12 +235,13 @@ td{
   transition: transform .2s;
 }
   .td_zoom {
-
     transform: scale(1.1);
+    background-color:#2eca48;
   }
   #td_shake{
-    animation: shake 0.2s;
+    animation: shake 0.25s;
     animation-iteration-count: 1;
+    background-color:#e0522f;
   }
 
   @keyframes shake {
@@ -250,5 +253,51 @@ td{
     100% { transform: translate(-1px, 2px) rotate(-1deg); }
 
   }
+
+.popup{
+  position:fixed;
+  left:110px;
+  top:150px;
+  height:150px;
+  width:150px;
+  border-radius: 10px;
+  background-color: rgb(18, 44, 35);
+  box-shadow: 0 0 10px 5px #126e1a99;
+  background: linear-gradient(to right,#90ceeb 0%,#d6d8bcc0 100%);
+  animation: zoom 2s;
+  animation-iteration-count: 1;
+  text-align: center;
+  display: none;
+}
+.rate{
+  text-align: center;
+}
+  @keyframes zoom {
+    0% { transform: scale(1); }
+    100%{transform: scale(2);}
+  }
+
+  .ok{
+
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.9em;
+    font-weight: 500;
+
+  }
+
+
+  button{
+    height: 60%;
+    width:60%;
+    background: #689fcf60;
+    border-radius: 19px;
+    margin:10px;
+    position: relative;
+  }
+
+button > img{
+  height:50px;
+  width:50px;
+}
 
 
