@@ -14,7 +14,6 @@ $( document ).ready(function() {
   setUpInital();
   console.log("trackGame : "+trackGame);
 
-
   if(isgridPrint){
 
     $('td').on('click', function(){
@@ -39,10 +38,13 @@ $( document ).ready(function() {
 
     $('#reset, .reset').click(function(){
       $('.popup').css('display','none');
+      $('.main').css('opacity',1);
+
       setUpInital();
     });
     $('.resetpop').click(function(){
       $('.popup').css('display','none');
+      $('.main').css('opacity',1);
       setUpInital();
 
     });
@@ -71,6 +73,7 @@ function popUp(){
   var starTotal = 5.0;
   var i=0;
   //animation to show final rating
+  $('.main').css('opacity',0.6);
   var z = setInterval(function(){
     if(i<=rate*10){
       i++;
@@ -82,8 +85,6 @@ function popUp(){
       clearInterval(z);
     }
   },100);
-
-
 
 }
 /* ------------------------VISIBLITY HIDE OPEN ------------------- */
@@ -239,10 +240,10 @@ function fillTable(x){
 /*  ------------------------------ RASPONSIVE DESIGN-------------------------- */
   function setupTheme(){
 
-    var deviceWidth =window.innerWidth;
-    var deviceheight =window.innerHeight;
+    var deviceWidth =innerWidth;
+    var deviceheight =innerHeight;
     var gridWidth =parseInt( $('.grid').css('width'));
-    console.log("win:"+innerWidth+"x"+innerHeight);
+    console.log("win:"+deviceWidth+"x"+deviceheight);
     if(deviceWidth-10<gridWidth){
       $('.grid').css("height",deviceWidth-10);
       $('.grid').css("width",deviceWidth-10);
@@ -253,20 +254,22 @@ function fillTable(x){
 
 
     var containerHeight =parseInt( $('.container').css('height'));
-    console.log("continer : " +containerHeight);
+  //  console.log("continer : " +containerHeight);
     var marginTop =parseInt( $('.statics').css('margin-top'));
-    console.log("margin-top:"+marginTop);
+    //console.log("margin-top:"+marginTop);
     while((containerHeight > deviceheight) && (marginTop>0)){
-      console.log("margin-top << "+marginTop);
+    //  console.log("margin-top << "+marginTop);
       $('.statics').css("margin-top:",marginTop-2);
       marginTop =parseInt( $('.statics').css('margin-top'));
     }
 
     var resetHeight =parseInt( $('#reset').css('height'));
     $('#reset').css('width',resetHeight+5);
-
-    $('.popup').css('top',(deviceheight-parseInt($('popup').css('height')))/2);
-    $('.popup').css('left',(deviceWidth-parseInt($('popup').css('widtht')))/2);
+    var ptop = (deviceheight-parseInt( $('.popup').css('height')))/2;
+    var pleft = (deviceWidth-parseInt( $('.popup').css('width')))/2;
+    console.log("popup : "+ptop+" "+pleft);
+    $('.popup').css('top',ptop);
+    $('.popup').css('left',pleft);
 
   }
 });

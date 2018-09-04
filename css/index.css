@@ -15,6 +15,9 @@ body,
   margin:0px;
 
 }
+.main{
+  opacity: 1;
+}
 
 .container{
   width: auto;
@@ -256,8 +259,8 @@ td{
 
 .popup{
   position:fixed;
-  left:110px;
-  top:150px;
+  left:40%;
+  top:30%;
   height:150px;
   width:150px;
   border-radius: 10px;
@@ -274,7 +277,7 @@ td{
 }
   @keyframes zoom {
     0% { transform: scale(1); }
-    100%{transform: scale(2);}
+    100%{transform: scale(1.8);}
   }
 
   .ok{
@@ -300,4 +303,13 @@ button > img{
   width:50px;
 }
 
+.footer{
+  position:fixed;
+  font-size:12px;
+  bottom:2px;
+  left:2px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  color:rgb(72, 88, 15);
+}
 
