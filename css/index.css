@@ -252,3 +252,9 @@ td{
   }
 
 
+.footer{
+  position:fixed;
+  font-size:12px;
+  bottom:2px;
+  left:2px;
+}
