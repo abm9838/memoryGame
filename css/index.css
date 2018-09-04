@@ -264,7 +264,7 @@ td{
   background-color: rgb(18, 44, 35);
   box-shadow: 0 0 10px 5px #126e1a99;
   background: linear-gradient(to right,#90ceeb 0%,#d6d8bcc0 100%);
-  animation: zoom 2s;
+  animation: zoom 3s;
   animation-iteration-count: 1;
   text-align: center;
   display: none;

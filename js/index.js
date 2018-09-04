@@ -16,7 +16,6 @@ $( document ).ready(function() {
 
 
   if(isgridPrint){
-    popUp();
 
     $('td').on('click', function(){
       clickedTd = $(this).attr('class'); // class of td
@@ -39,6 +38,7 @@ $( document ).ready(function() {
 
 
     $('#reset, .reset').click(function(){
+      $('.popup').css('display','none');
       setUpInital();
     });
     $('.resetpop').click(function(){
