@@ -10,11 +10,9 @@ $( document ).ready(function() {
   var currentClick=0;
   var arrClass = new Array(16);
   var trackGame = new Array(0);
-
   var clickedTd;
   setUpInital();
   console.log("trackGame : "+trackGame);
-
 
   if(isgridPrint){
 
@@ -38,9 +36,19 @@ $( document ).ready(function() {
     });
 
 
-    $('#reset').click(function(){
+    $('#reset, .reset').click(function(){
+      $('.popup').css('display','none');
+      $('.main').css('opacity',1);
+
       setUpInital();
     });
+    $('.resetpop').click(function(){
+      $('.popup').css('display','none');
+      $('.main').css('opacity',1);
+      setUpInital();
+
+    });
+
       /*-----------------timer  ---------*/
     var x = setInterval(function() {
       now = new Date().getTime();
@@ -59,18 +67,41 @@ $( document ).ready(function() {
 
 }
 
+/*---------------------DISPLAY POP UP --------------- */
+function popUp(){
+  $('.popup').css('display','block');
+  var starTotal = 5.0;
+  var i=0;
+  //animation to show final rating
+  $('.main').css('opacity',0.6);
+  var z = setInterval(function(){
+    if(i<=rate*10){
+      i++;
+      const starPercentage = ((i/10) / starTotal) * 100;
+      const starPercentageRounded = Math.round(starPercentage / 10) * 10+"%";
+      document.querySelector('.rateLen').style.width = starPercentageRounded;
+    }
+    if(i>=rate*10){
+      clearInterval(z);
+    }
+  },100);
 
+}
 /* ------------------------VISIBLITY HIDE OPEN ------------------- */
 
 function closePair(){
-
-
-
+  var shakeId1=trackGame[trackGame.length-1];
+  var shakeId2=trackGame[trackGame.length-2];
+  $('.'+shakeId1).attr("id","td_shake");
+  $('.'+shakeId2).attr("id","td_shake");
   clickedTd = trackGame.pop();
   animateClose();
   clickedTd = trackGame.pop();
   animateClose();
-  console.log(trackGame);
+  setTimeout(function () {
+    $('.'+shakeId1).attr("id","");
+    $('.'+shakeId2).attr("id","");}, 300);
+
 }
 function animateOpen(){
   $('.'+clickedTd+ ' img').css('visibility','');
@@ -111,7 +142,8 @@ function calClick(clickedTd){
         rate = parseFloat(rate).toFixed(2);
         isgameEnd=true;
         clearTimeout(x);
-        alert("you won the game in "+minutes+":"+seconds+" and rating : "+rate);
+        popUp();
+       // alert("you won the game in "+minutes+":"+seconds+" and rating : "+rate);
       }
       currentClick = 0;
       preClick = 0;}
@@ -200,7 +232,7 @@ function fillTable(x){
   console.log("here is x");
   console.log(x);
   for(var i=1;i<17;i++){
-    $('.td'+i).html("<img id=\"\" class=\"img"+x[i-1]+"\"src=\"img/im"+x[i-1]+".png\" >");
+    $('.td'+i).html("<img  class=\"img"+x[i-1]+"\"src=\"img/im"+x[i-1]+".png\" >");
   }
 
   arrClass = x;
@@ -208,10 +240,10 @@ function fillTable(x){
 /*  ------------------------------ RASPONSIVE DESIGN-------------------------- */
   function setupTheme(){
 
-    var deviceWidth =window.innerWidth;
-    var deviceheight =window.innerHeight;
+    var deviceWidth =innerWidth;
+    var deviceheight =innerHeight;
     var gridWidth =parseInt( $('.grid').css('width'));
-    console.log("win:"+innerWidth+"x"+innerHeight);
+    console.log("win:"+deviceWidth+"x"+deviceheight);
     if(deviceWidth-10<gridWidth){
       $('.grid').css("height",deviceWidth-10);
       $('.grid').css("width",deviceWidth-10);
@@ -222,21 +254,23 @@ function fillTable(x){
 
 
     var containerHeight =parseInt( $('.container').css('height'));
-    console.log("continer : " +containerHeight);
+  //  console.log("continer : " +containerHeight);
     var marginTop =parseInt( $('.statics').css('margin-top'));
-    console.log("margin-top:"+marginTop);
+    //console.log("margin-top:"+marginTop);
     while((containerHeight > deviceheight) && (marginTop>0)){
-      console.log("margin-top << "+marginTop);
+    //  console.log("margin-top << "+marginTop);
       $('.statics').css("margin-top:",marginTop-2);
       marginTop =parseInt( $('.statics').css('margin-top'));
     }
 
     var resetHeight =parseInt( $('#reset').css('height'));
     $('#reset').css('width',resetHeight+5);
-
+    var ptop = (deviceheight-parseInt( $('.popup').css('height')))/2;
+    var pleft = (deviceWidth-parseInt( $('.popup').css('width')))/2;
+    console.log("popup : "+ptop+" "+pleft);
+    $('.popup').css('top',ptop);
+    $('.popup').css('left',pleft);
 
   }
-
-
 });
 
