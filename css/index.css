@@ -1,10 +1,13 @@
 /* index.css*/
 @font-face {
-  font-family: FontAwesome;
-  src: url(FontAwesome.otf);
+  font-family:  'FontAwesome';
+  src: url('fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+      url('fontawesome-webfont.woff') format('woff'),
+      url('fontawesome-webfont.ttf')  format('truetype'),
+      url('fontawesome-webfont.svg#svgFontName') format('svg');
 }
 div{
-  border:px solid red;
+  border:0px solid red;
 }
 
 body,
@@ -264,7 +267,7 @@ td{
   height:150px;
   width:150px;
   border-radius: 10px;
-  background-color: rgb(18, 44, 35);
+  background-color: #122c23;
   box-shadow: 0 0 10px 5px #126e1a99;
   background: linear-gradient(to right,#90ceeb 0%,#d6d8bcc0 100%);
   animation: zoom 3s;
