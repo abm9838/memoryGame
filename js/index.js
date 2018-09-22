@@ -15,6 +15,7 @@ $(document).ready(function() {
 
   setupTheme();
   document.getElementById("timer").innerHTML = "0:00";
+  $('.startButton').focus();
   rateGame()
   setUpInitial();
   isgameEnd=true;
@@ -64,6 +65,7 @@ $(document).ready(function() {
   function popUp() {
     isgameEnd=true;
     $('.popup').css('display', 'block');
+    $('button').focus();
     var starTotal = 5.0;
     var i = 0;
     //animation to show final rating
@@ -186,12 +188,17 @@ $(document).ready(function() {
     var starTotal = 5.0;
     var rateTime = 0;
     var effMoveCount = 0;
-    //  decrease rating after 15sec and 25moves
-    if (seconds > 15 && minutes < 1) {
-      rateTime = parseFloat((minutes + seconds / 60 * 2.2) / 1.7).toFixed(3);
+    //  decrease rating after 15sec and 20moves
+    var totalSec = parseInt(minutes * 60) + parseInt(seconds) ;
+    //console.log("sec : ",totalSec);
+    if (totalSec > 12 ) {
+      rateTime = (totalSec - 12)*0.065;
+      if(rateTime>2.5){
+        rateTime=2.5;
+      }
     }
-    if (moveCount > 25) {
-      effMoveCount = moveCount - 25;
+    if (moveCount > 20) {
+      effMoveCount = moveCount - 20;
     }
     var rateMove = (effMoveCount * 0.10).toFixed(3);
     rate = 5 - rateTime - rateMove;
