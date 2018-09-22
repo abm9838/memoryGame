@@ -14,7 +14,7 @@ $(document).ready(function() {
   var timerData;
   setUpInital();
   console.log("trackGame : " + trackGame);
-popUp();
+
   if (isgridPrint) {
 
     $('td').on('click', function() {
