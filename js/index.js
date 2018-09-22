@@ -18,6 +18,7 @@ $(document).ready(function() {
   rateGame()
   setUpInitial();
   isgameEnd=true;
+  // wait for start button
   $('.startButton').click(function() {
     console.log("start clicked");
     $('.startWindow').css('display', 'none');
