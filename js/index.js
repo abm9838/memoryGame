@@ -11,9 +11,10 @@ $(document).ready(function() {
   var arrClass = new Array(16);
   var trackGame = new Array(0);
   var clickedTd;
+  var timerData;
   setUpInital();
   console.log("trackGame : " + trackGame);
-
+popUp();
   if (isgridPrint) {
 
     $('td').on('click', function() {
@@ -39,36 +40,22 @@ $(document).ready(function() {
     $('#reset, .reset').click(function() {
       $('.popup').css('display', 'none');
       $('.main').css('opacity', 1);
-
       setUpInital();
     });
     $('.resetpop').click(function() {
       $('.popup').css('display', 'none');
       $('.main').css('opacity', 1);
       setUpInital();
-
     });
-
-    /*-----------------timer  ---------*/
-    var x = setInterval(function() {
-      now = new Date().getTime();
-      distance = now - countDownDate;
-      //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      seconds = ("0" + seconds).slice(-2);
-      document.getElementById("timer").innerHTML = minutes + ":" + seconds;
-      rateGame()
-    }, 1000);
-
-
-
-
   }
+  timerControl();
+
+
+
 
   /*---------------------DISPLAY POP UP --------------- */
   function popUp() {
+    isgameEnd=true;
     $('.popup').css('display', 'block');
     var starTotal = 5.0;
     var i = 0;
@@ -144,7 +131,7 @@ $(document).ready(function() {
         if (trackGame.length >= 16) {
           rate = parseFloat(rate).toFixed(2);
           isgameEnd = true;
-          clearTimeout(x);
+          clearTimeout(timerData);
           popUp();
           // alert("you won the game in "+minutes+":"+seconds+" and rating : "+rate);
         }
@@ -181,9 +168,10 @@ $(document).ready(function() {
     displayMoves(0);
     setupTheme();
     fillTable();
-    setTimeout(hideImg, 2000);
+    setTimeout(hideImg, 2500);
     isgameEnd = false;
     isgridPrint = true;
+    timerControl();
   }
 
   /*----------------------------------GAME RATING--------------------  */
@@ -211,6 +199,25 @@ $(document).ready(function() {
   function displayMoves(moveCount) {
     $('.moves').html(moveCount + " moves");
 
+  }
+
+  function timerControl() {
+    /*-----------------timer  ---------*/
+    
+    timerData = setInterval(function() {
+      if(isgameEnd==false){
+        now = new Date().getTime();
+        distance = now - countDownDate;
+        //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        seconds = ("0" + seconds).slice(-2);
+        document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+        rateGame()
+      }
+     
+    }, 1000);
   }
 
   /* ----------------------------------FILL TABLE WITH RANDOM IMAGES--------------   */
