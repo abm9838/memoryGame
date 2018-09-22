@@ -4,7 +4,7 @@ $(document).ready(function() {
   var countDownDate = new Date().getTime();
   var minutes = 0;
   var seconds = 0;
-  var isgameEnd = false;
+  var isgameEnd = true;
   var isgridPrint = false;
   var preClick = 0;
   var currentClick = 0;
@@ -12,14 +12,24 @@ $(document).ready(function() {
   var trackGame = new Array(0);
   var clickedTd;
   var timerData;
-  setUpInital();
-  console.log("trackGame : " + trackGame);
+
+  setupTheme();
+  document.getElementById("timer").innerHTML = "0:00";
+  rateGame()
+  setUpInitial();
+  isgameEnd=true;
+  $('.startButton').click(function() {
+    console.log("start clicked");
+    $('.startWindow').css('display', 'none');
+    $('.main').css('opacity', 1);
+    setUpInitial();
+  });
+
 
   if (isgridPrint) {
 
     $('td').on('click', function() {
       clickedTd = $(this).attr('class'); // class of td
-
       if (!isgameEnd && clickedTd != trackGame[trackGame.length - 1]) {
 
         animateOpen(clickedTd);
@@ -36,23 +46,19 @@ $(document).ready(function() {
 
     });
 
-
     $('#reset, .reset').click(function() {
       $('.popup').css('display', 'none');
       $('.main').css('opacity', 1);
-      setUpInital();
+      setUpInitial();
     });
     $('.resetpop').click(function() {
       $('.popup').css('display', 'none');
       $('.main').css('opacity', 1);
-      setUpInital();
+      setUpInitial();
     });
+
   }
   timerControl();
-
-
-
-
   /*---------------------DISPLAY POP UP --------------- */
   function popUp() {
     isgameEnd=true;
@@ -150,7 +156,7 @@ $(document).ready(function() {
 
 
   /*----------------------------------INITIAL SETUP----------------------- */
-  function setUpInital() {
+  function setUpInitial() {
     moveCount = 0;
     rate = 5;
     minutes = 0;
@@ -216,6 +222,10 @@ $(document).ready(function() {
         document.getElementById("timer").innerHTML = minutes + ":" + seconds;
         rateGame()
       }
+      else{
+        minutes=0;
+        seconds=00;
+      }
      
     }, 1000);
   }
@@ -280,5 +290,12 @@ $(document).ready(function() {
     $('.popup').css('top', ptop);
     $('.popup').css('left', pleft);
 
+    var stop = (deviceheight - parseInt($('.startWindow').css('height'))) / 2;
+    var sleft = (deviceWidth - parseInt($('.startWindow').css('width'))) / 2;
+    console.log("start : " + stop + " " + sleft);
+    $('.startWindow').css('top', stop);
+    $('.startWindow').css('left', sleft);
+
   }
+
 });
