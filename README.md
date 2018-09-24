@@ -1,4 +1,4 @@
-# Memory Game :smile: `version 2.2)`
+# Memory Game :smile: `version 2.2`
 This game is developed by `Abhay Maurya` as a part of `FEND` program.
 
 ## Game rules:
@@ -20,5 +20,5 @@ This game is developed by `Abhay Maurya` as a part of `FEND` program.
 
 **`Note:`** To score maximum try to complete the game in less time and less move.
 
-Get a try and have fun :fun: :joy:
+Get a try and have fun :joy::heart_eyes:
 
